@@ -1,0 +1,92 @@
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+body {
+  background: url(background.jpg);
+  background-size: cover;
+  display: flex;
+  overflow: scroll;
+  font-family: monospace;
+  transition: all .35s;
+
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/*  
+.photodiv{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-right: 10px;
+  padding-top: 10px;
+} */
+
+
+a{
+  display: block;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+a span{
+  position: relative;
+  z-index: 2;
+}
+
+a:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.377);
+  transition: all .35s;
+}
+
+a:hover{
+  color: white;
+}
+
+a:hover:after{
+  width: 100%;
+}
+
+a:active{
+    color: grey;
+    background-color: rgba(128, 128, 128, 0.685);
+}
+
+.error {
+  color:white;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  position:relative;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+

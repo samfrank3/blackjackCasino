@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="static/myinfo.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+
+	<body>
+
+		<div class="form-wrapper">
+			<!-- "action ="" redirects back to this log in page if the user has yet logged in and tried to access the home page -->
+			  <div class = "container">
+
+   <h3 class = "tableheader">Moneyboard</h3>
+        <table style="width:100%">
+			<thead>
+				<td>Username</td>
+				<td>Total of Amount Money (Won)</td>
+			</thead>
+			{%for row in rows%}
+			<tr>
+				<td>{{row["username"]}}</td>
+				<td>${{row["moneygained"]}}</td>
+			</tr>
+			{% endfor %}
+        
+		</table>
+			  </div>
+			  </div>
+        <a href="{{url_for('login')}}"><span>←</span></a>
+		
+	</body>
+
+</html>

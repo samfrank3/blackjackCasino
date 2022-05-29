@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/buytokens.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+    <body>
+        {% block content %}
+        <div class="form-wrapper">
+            <form method="POST">
+                <div class = "container">
+                    <div class = "photodiv">
+                        <img src="/static/coin.png">
+                        </div>
+                {{form.username(placeholder = "Re-enter your username" , class = "form")}}
+                  {{form.amountoftokens(placeholder = "Amount", class = "form" )}}
+                    <input type="submit" class="button" value="Purchase"/> <br>
+                    
+                    <input type="text" id="value" class = "form" placeholder="to United States Dollars (USD)" />
+                    <script>
+                        function conversion(){
+                            var x = document.getElementById("value").value;
+                            temp = x * 0.032
+                            if (x > 0){
+                                alert("$" + x + " KingCoin (KC) = $" + temp + " United States Dollars (USD)");
+                            } else{
+                                alert("Please enter an amount.");
+                            }
+                        }
+                    </script>
+                    <button type="button" id="convert" class="button" onclick = "conversion()">Convert</button>
+                    <!-- {{form.submit}} -->
+                </div>
+                <a href="{{url_for('login')}}" class = "indexlink"><span>←</span></a>
+                 </form>
+             </div>
+
+        
+             {% with messages = get_flashed_messages(with_categories=true) %}
+             {% for category, message in messages %}
+               <div class="{{ category }}">{{ message }}</div>
+             {% endfor %}
+           {% endwith %}
+
+       {% endblock %}
+    </body>
+</html>

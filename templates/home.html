@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="static/home.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+    <body>
+       <!-- "action ="" redirects back to this home page if the user has yet logged in and tried to access the home page -->
+        <form class = "room" action = "{{url_for('chess')}}" method="POST">
+
+          <div class = "container">
+            <div class = "photodiv">
+              <img src="/static/game.png">
+              </div>
+
+              <p>You are logged in as: {{username}}</p>
+            <!-- <input type="text" id="username" name="username" class="form" data-placeholder={{username}}> -->
+
+            <input type="text" id="room" name="room" class="form" placeholder="Join a room" required>
+            <input type="text" id="tokens" name="tokens" class="form" placeholder="Place your bet here." required>
+             <button class="button" value="submit"><span>Play!</span></button>
+
+          </div>
+ <a href="{{url_for('index')}}" class = "indexlink"><span>←</span></a>
+ <a href="{{url_for('buytokens')}}" class = "buytokenslink"><span>$</span></a>
+ <a href="{{url_for('myinfo')}}" class = "myinfolink"><span>Profile</span></a>
+        </form>
+        <!-- FLASH THE MESSAGES: -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <div class="{{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endwith %}
+    </body>
+    
+</html>

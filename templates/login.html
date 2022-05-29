@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="static/login.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+</head>
+    <body>
+
+      
+        {% block content %}
+
+        <div class="form-wrapper">
+          
+          <!-- "action ="" redirects back to this log in page if the user has yet logged in and tried to access the home page -->
+        <form method="POST" action = "{{url_for('home')}}">
+          <!-- <form method="POST"> -->
+            <div class = "container">
+             
+              <div class = "photodiv">
+                <!-- FLASH THE MESSAGES: -->
+              <img src="/static/login.png">
+              </div>
+             
+              <input type="text" id="username" name="username" class="form" placeholder="Username" required>
+              <!-- {{logform.username(placeholder = "Username", class = "form")}} -->
+              <!-- {{logform.password(placeholder = "Password", class = "form")}} -->
+              <input type="password" id="password" name="password" class="form" placeholder="Password" required>
+                <input type="submit" class="button" value="login"/>
+      
+            </div>
+            <a href="{{url_for('index')}}"><span>←</span></a>
+            <a class = "scoreboardlink" href="{{url_for('scoreboard')}}"><span>Scoreboard</span></a>
+            <a class = "moneyboardlink" href="{{url_for('moneyboard')}}"><span>Moneyboard</span></a>
+             </form>
+         </div>
+       
+         {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <div class="{{ category }}">{{ message }} </div>
+          {% endfor %}
+        {% endwith %}
+         
+{% endblock %}
+
+    </body>
+</html>

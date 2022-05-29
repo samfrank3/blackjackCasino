@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="static/myinfo.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+    <body>
+        {% block content %}
+
+        <div class="form-wrapper">
+          <!-- "action ="" redirects back to this log in page if the user has yet logged in and tried to access the home page -->
+        
+            <div class = "container">
+              <div class = "photodiv">
+              <img src="/static/login.png">
+              </div>
+
+			  <h3 class = "tableheader">{{username}}'s information</h3>
+			  <table style="width:100%">
+
+				<tr>
+				<th>UserID:</th>
+				<td>{{userID}}</td>
+				</tr>
+
+				<tr>
+				<th>Username:</th>
+				<td>{{username}}</td>
+				</tr>
+
+				<tr>
+				<th>King Coins Balance:</th>
+				<td>${{userTOKEN}}</td>
+				</tr>
+
+				<tr>
+				<th>Email:</th>
+				<td>{{userEMAIL}}</td>
+				</tr>
+
+				<tr>
+					<th>Address:</th>
+					<td>{{userADDRESS}}</td>
+					</tr>
+				
+					<tr>
+						<th>King Coins Purchase History:</th>
+				<ul>
+					<td>
+						{%for i in allpurchasehistory%}
+						<li>Date and Time: {{i[0]}} Amount: ${{i[1]}}</li>
+						{% endfor %}
+					</td>
+						
+				</ul>
+			</tr>
+				</table>
+
+             
+
+            </div>
+            <a href="{{url_for('login')}}"><span>←</span></a>
+           
+         </div>
+
+         <!-- FLASH THE MESSAGES: -->
+		 {% with messages = get_flashed_messages(with_categories=true) %}
+		 {% for category, message in messages %}
+		   <div class="{{ category }}">{{ message }}</div>
+		 {% endfor %}
+	   {% endwith %}
+{% endblock %}
+
+    </body>
+</html>

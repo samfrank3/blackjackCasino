@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/register.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+    <body>
+
+        {% block content %}
+
+        <div class="form-wrapper">
+        <form method="POST">
+            
+            <div class = "container">
+                <div class = "photodiv">
+       
+                <img src="/static/login.png">
+                </div>
+
+                {{regform.name(placeholder = "Name", class = "form")}}
+                {{regform.username(placeholder = "Username", class = "form")}}
+
+                {{regform.email(placeholder = "Email", class = "form")}}
+    
+                    {{regform.address(placeholder = "Address", class = "form")}}
+
+              {{regform.password(placeholder = "Password", class = "form")}}
+
+                {{regform.confirmpassword(placeholder = "Confirm Password", class = "form")}}
+
+                <input type="submit" class="button" value="Register"/>
+                <!-- {{regform.submit}} -->
+            </div>
+            <a href="{{url_for('index')}}"><span>←</span></a>
+             </form>
+         </div>
+         
+    
+          <!-- FLASH THE MESSAGE: -->
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <div class="{{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endwith %}
+
+{% endblock %}
+
+    </body>
+</html>
