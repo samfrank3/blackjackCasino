@@ -309,11 +309,7 @@ var socket;
           socket.on('stayGame', function(data) {
             $('#chat').val($('#chat').val() + data.msg  + '\n');
             
-           
-
             if (data.GameOver == 1){
-              // document.getElementById("playerAscore").value = data.whowins;
-              // document.getElementById("playerBscore").value = data.whowins;
               var whoeverwins = data.whowins;
 
               if (confirm("Game Over! " + whoeverwins + " Wins!")){
@@ -352,22 +348,10 @@ var socket;
 
         $('#hit').click(function(e) {
             socket.emit('hit', {});//emit 'hit' where 'hit' is defined in the python file.
-            // console.log("Hit this shit!");
         });
         
         $('#stay').click(function(e) {
             socket.emit('stay', {});//emit 'stay' where 'stay' is defined in the python file.
-            // console.log("Stay this shit!");
         });
 
         });
-
-
-// Game  -------------- NEED TO WORK ON THIS..... -------------------
-
-// Things need to work on:
-//1. Make it multipleplayer supportive (Maybe to 3 or 4 people)
-//2. Removew restart button once one player clicked
-//3. fixed he update() function such that if there's 3 or 4 people and if one of the player wins, the top point getter wins.
-
-// Create a local dictoinary that stores the cards (hits) and the user's moves and then pass it on to the server.
