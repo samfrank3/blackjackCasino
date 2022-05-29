@@ -367,7 +367,7 @@ numberOfUsersDictionary = {}
 #Players store the players inside the array for the Blackjack game
 playersBlackJackArray = []
 
-@app.route("/chess", methods = ['POST', 'GET'])
+@app.route("/blackJack", methods = ['POST', 'GET'])
 def chess():
     # form = RoomForm()
     if (request.method == "POST"):
@@ -380,7 +380,7 @@ def chess():
         
         if (type(tokens) is type(None) or tokens.isnumeric() == False):
                 flash("Must input an integer value for the amount you would like to bet!",'error')
-                return redirect(url_for('chess'))
+                return redirect(url_for('blackJack'))
 
         # print(doublecheckusernamewithlogin.get(username))
         # print(username)
@@ -494,7 +494,7 @@ TotalGameCountArray = []
 
 
 
-@socketio.on('join', namespace='/chess')
+@socketio.on('join', namespace='/blackJack')
 def join(message):
     room = session.get('room')
     username = str(session.get('username'))
@@ -591,7 +591,7 @@ def gameover(message):
     print(TotalGameCountArrayDict)
     session.clear()
 
-@socketio.on('left', namespace='/chess')
+@socketio.on('left', namespace='/blackJack')
 def left(message):
     room = session.get('room')
     username = session.get('username')
@@ -649,7 +649,7 @@ def left(message):
     emit('status', {'msg': str(username) + ' has left the room.'}, room=room)
 
 
-@socketio.on('text', namespace='/chess')
+@socketio.on('text', namespace='/blackJack')
 def text(message):
     room = session.get('room')
     #prints the name of the user in the chat room who texts
@@ -657,7 +657,7 @@ def text(message):
     emit('message', {'msg': str(session.get('username')) + ' : ' + str(message['msg'])}, room=room)
 
 
-@socketio.on('hit', namespace='/chess')
+@socketio.on('hit', namespace='/blackJack')
 def hit(message):
     room = session.get('room')
     playerwhoHits = session.get('username')
@@ -1049,7 +1049,7 @@ def hit(message):
         emit('hitGame', {'msg': "\nCan't Hit right now! Waiting for another player to join...\n", 'playerAnewcard': playerAnewcard, 'playerBnewcard': playerBnewcard}, room = room)
 
 
-@socketio.on('stay', namespace='/chess')
+@socketio.on('stay', namespace='/blackJack')
 def stay(message):
     room = session.get('room')
     playerwhoStays = session.get('username')
